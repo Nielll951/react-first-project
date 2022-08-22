@@ -1,17 +1,33 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDom from 'react-dom';
+
+// JSX Rules
+// return single element
+// div / section / article or Fragment
+// use camelCase for html attribute
+// className instead of class
+// close everly element
+// formatting
+// Nested Components, React Tools
+
+// CSS
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import {books} from './books'
+import Book from './Book';
+import {greeting} from './testing/testing';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function BookList() {
+  console.log(greeting);
+  return (
+    <section className='booklist'>
+      {books.map((book) => {
+        return (
+          <Book key={book.id} {...book}></Book>
+        )
+      })}
+    </section>
+  )      
+}
+
+ReactDom.render(<BookList />,document.getElementById('root'));
